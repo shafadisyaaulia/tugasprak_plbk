@@ -1,4 +1,4 @@
-import { createContext, useContext, useMemo, useReducer } from 'react'
+import { createContext, useContext, useMemo, useReducer, useRef, useState } from 'react'
 
 const initialState = {
   items: [],
@@ -63,6 +63,24 @@ const CartContext = createContext(null)
 
 export function CartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialState)
+  const [notice, setNotice] = useState('')
+  const noticeTimerRef = useRef(null)
+
+  const showNotice = (message) => {
+    setNotice(message)
+    if (noticeTimerRef.current) {
+      clearTimeout(noticeTimerRef.current)
+    }
+
+    noticeTimerRef.current = setTimeout(() => {
+      setNotice('')
+    }, 1800)
+  }
+
+  const addItem = (product) => {
+    dispatch({ type: 'ADD_ITEM', payload: product })
+    showNotice(`"${product.title}" masuk ke keranjang`)
+  }
 
   const totalItems = useMemo(
     () => state.items.reduce((sum, item) => sum + item.quantity, 0),
@@ -78,11 +96,13 @@ export function CartProvider({ children }) {
     items: state.items,
     totalItems,
     totalPrice,
-    addItem: (product) => dispatch({ type: 'ADD_ITEM', payload: product }),
+    notice,
+    addItem,
     removeItem: (productId) => dispatch({ type: 'REMOVE_ITEM', payload: productId }),
     updateQuantity: (productId, quantity) =>
       dispatch({ type: 'UPDATE_QUANTITY', payload: { productId, quantity } }),
     clearCart: () => dispatch({ type: 'CLEAR_CART' }),
+    dismissNotice: () => setNotice(''),
   }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>

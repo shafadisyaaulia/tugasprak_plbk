@@ -47,6 +47,15 @@ export default function Home() {
 
   return (
     <section>
+      <div className="home-hero">
+        <p className="hero-eyebrow">CBSE Praktikum Storefront</p>
+        <h2>Belanja Cepat, Komponen Reusable, dan UX yang Jelas</h2>
+        <p>
+          Jelajahi produk, cari nama barang dengan cepat, lalu tambahkan ke keranjang dengan
+          notifikasi real-time.
+        </p>
+      </div>
+
       <h2 style={{ marginBottom: '0.8rem' }}>Daftar Produk</h2>
       <SearchBar value={searchQuery} onChange={setSearchQuery} />
 
@@ -58,6 +67,7 @@ export default function Home() {
           <p style={{ color: '#64748b', marginTop: 0 }}>
             Menampilkan {filteredProducts.length} dari {products.length} produk
           </p>
+
           <div className="products-grid">
             {filteredProducts.map((product) => (
               <ProductCard key={product.id} product={product} />

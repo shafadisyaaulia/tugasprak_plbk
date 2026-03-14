@@ -2,25 +2,21 @@ import { Link } from 'react-router-dom'
 import { useCart } from '../context/CartContext'
 
 export default function ProductCard({ product }) {
-  const { addItem } = useCart()
+  const { addItem, items } = useCart()
+  const itemInCart = items.find((item) => item.id === product.id)
+  const quantityInCart = itemInCart ? itemInCart.quantity : 0
 
   return (
-    <article
-      style={{
-        border: '1px solid #ddd',
-        borderRadius: '8px',
-        padding: '1rem',
-        display: 'flex',
-        flexDirection: 'column',
-        height: '100%',
-      }}
-    >
+    <article className="product-card">
       <img
         src={product.image}
         alt={product.title}
         style={{ width: '100%', height: '200px', objectFit: 'contain' }}
       />
-      <h3 style={{ fontSize: '0.95rem', margin: '0.5rem 0', flex: 1 }}>
+
+      {quantityInCart > 0 && <span className="in-cart-pill">Di keranjang: {quantityInCart}</span>}
+
+      <h3 style={{ fontSize: '0.95rem', margin: '0.5rem 0', flex: 1, lineHeight: 1.35 }}>
         {product.title.length > 50 ? `${product.title.substring(0, 50)}...` : product.title}
       </h3>
       <p style={{ fontWeight: 'bold', color: '#e67e22', fontSize: '1.1rem' }}>
