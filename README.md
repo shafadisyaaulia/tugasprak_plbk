@@ -1,16 +1,73 @@
-# React + Vite
+# Ecommerce App - Praktikum CBSE Pertemuan 5
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyek ini dibuat untuk memenuhi modul praktikum CBSE tentang software component, library, dan framework menggunakan React + Vite.
 
-Currently, two official plugins are available:
+## Fitur Utama
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Menampilkan daftar produk dari Fake Store API (axios).
+- Halaman detail produk berdasarkan ID (`useParams` dari `react-router-dom`).
+- Fitur pencarian produk berdasarkan nama pada halaman Home.
+- Keranjang belanja dengan update quantity (`+` dan `-`).
+- Notifikasi saat produk berhasil ditambahkan ke keranjang.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React (Framework)
+- Vite (Build tool)
+- Axios (Library HTTP client)
+- React Router DOM (Routing)
 
-## Expanding the ESLint configuration
+## Struktur Folder
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+src/
+	components/
+		Header.jsx
+		ProductCard.jsx
+		CartItem.jsx
+		SearchBar.jsx
+		Loading.jsx
+	pages/
+		Home.jsx
+		ProductDetail.jsx
+		Cart.jsx
+	services/
+		api.js
+	context/
+		CartContext.jsx
+```
+
+## Menjalankan Project
+
+```bash
+npm install
+npm run dev
+```
+
+Build production:
+
+```bash
+npm run build
+```
+
+## Screenshot Halaman
+
+Simpan file screenshot di folder `docs/screenshots/` dengan nama berikut:
+
+- `docs/screenshots/home.png`
+- `docs/screenshots/product-detail.png`
+- `docs/screenshots/cart.png`
+
+Lalu gambar akan otomatis tampil di bagian ini.
+
+### Home
+
+![Home](docs/screenshots/home.png)
+
+### Product Detail
+
+![Product Detail](docs/screenshots/product-detail.png)
+
+### Cart
+
+![Cart](docs/screenshots/cart.png)
